@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export const DEFAULT_CONFIG = {
-    baseURL: "http://10.27.12.236:8080/api/",    withCredentials: true
+    baseURL: "http://10.27.12.236:8080/api/",
+    withCredentials: true
+}
 
 
 const API = axios.create(DEFAULT_CONFIG);
