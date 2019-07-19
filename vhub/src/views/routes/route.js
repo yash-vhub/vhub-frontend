@@ -1,16 +1,18 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import Home from "../home";
-import LoginPage from "../login-page";
+import Home from "../home/home-connector";
+import LoginPage from "../login/login-connector";
+import Header from '../common/header';
 
 function Routing(){
     return (
+        <div>
+        <Header/>
         <Router>
-            <div>
-                <Route path="/" exact component={Home}/>
-                <Route path="/login" component={LoginPage}/>
-            </div>
+            <Route path="/home" component={Home}/>
+            <Route path="/" exact component={LoginPage}/>
         </Router>
+        </div>
     )
 }
 

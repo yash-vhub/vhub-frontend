@@ -1,13 +1,14 @@
 import React from 'react';
-import '../../styles/header.css';
+import { Header, Segment } from 'semantic-ui-react'
 
-function Header() {
+function AppHeader() {
     return (
-        <div className='header'>
-            <h1>YASH</h1>
-            <h2>Vendor Management</h2>
-        </div>
+        <Segment clearing size='huge' inverted color='blue'>
+            <Header as='h2' floated='left'>
+                Yash VHub
+            </Header>
+        </Segment>
     )
 }
 
-export default Header;
+export default AppHeader;

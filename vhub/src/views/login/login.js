@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from "./common/header";
+import LoginBox from './login-box';
 
 function LoginPage(){
     return (
         <div>
-            <Header/>
-            <span>Login Page</span>
+            <LoginBox/>
         </div>
     );
 }
