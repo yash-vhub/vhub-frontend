@@ -1,4 +1,4 @@
-import API, {DEFAULT_CONFIG, Repository} from '.';
+import {Repository} from '.';
 
 const Vendors = new Repository('vendors');
 export default Vendors;
