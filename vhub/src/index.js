@@ -5,6 +5,7 @@ import Routing from "./views/routes/route";
 import {createStore} from "redux";
 import vendorApp from './reducers/reducers';
 import { Provider } from "react-redux";
+import 'semantic-ui-css/semantic.min.css';
 
 const store = createStore(vendorApp);
 
