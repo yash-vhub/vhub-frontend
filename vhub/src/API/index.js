@@ -12,15 +12,7 @@ export class Repository {
     }
 
     getData({data, status, statusText}) {
-        if (status >= 200 && status < 300) {
-            if(data && data._embedded) {
-                return data._embedded;
-            } else {
-                return data;
-            }
-        } else {
-            return `${status}: ${statusText}`;
-        }
+        return (status >= 200 && status < 300) ? data : `${status}: ${statusText}`;
     }
 
     getId(idObject, requestId, required=true) {
@@ -35,9 +27,10 @@ export class Repository {
         return id;
     }
 
-    async post(data) {
+    async post(data, opts={}) {
         try {
             const response = await API.post(this.url, {
+                ...opts,
                 data
             });
             return this.getData(response)
@@ -46,21 +39,22 @@ export class Repository {
         }
     }
 
-    async get(data) {
+    async get(data, opts={}) {
         const id = this.getId(data, undefined, false);
         const request = (id || id === 0) ? `${this.url}/${id}` : this.url
         try {
-            const response = await API.get(request);
+            const response = await API.get(request, opts);
             return this.getData(response);
         } catch (e) {
             console.error(e);
         }
     }
 
-    async patch(data, dataId) {
+    async patch(data, dataId, opts={}) {
         const id = this.getId(data, dataId)
         try {
             const response = await API.patch(`${this.url}/${id}`, {
+                ...opts,
                 data
             });
             return this.getData(response);
@@ -69,10 +63,10 @@ export class Repository {
         }
     }
 
-    async delete(data) {
+    async delete(data, opts={}) {
         const id = this.getId(data);
         try {
-            const response = await API.delete(`${this.url}/${id}`);
+            const response = await API.delete(`${this.url}/${id}`, opts);
             return this.getData(response);
         } catch (e) {
             console.error(e);
