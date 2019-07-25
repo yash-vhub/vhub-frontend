@@ -1,9 +1,10 @@
 import API, {Repository} from '.';
 
 class UserRepository extends Repository {
-    async login(username, password) {
+    async login(username, password, config={}) {
         try {
             const response = await API.get('login', {
+                ...config,
                 auth: {
                     username,
                     password

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const DEFAULT_CONFIG = {
-    baseURL: "http://10.27.12.236:8080/api/"
+    baseURL: "http://10.27.12.52:8080/api/"
 }
 const API = axios.create(DEFAULT_CONFIG);
 
@@ -35,44 +35,46 @@ export class Repository {
         return id;
     }
 
-    async post(data) {
+    async post(data, config={}) {
         try {
-            const response = await API.post(this.url, {
-                data
-            });
-            return this.getData(response)
+            if(Array.isArray(data)) {
+                const requests = data.map(async (d) => await API.post(this.url, d, config));
+                const responses = await Promise.all(responses);
+                return responses.map(this.getData);
+            } else {
+                const response = await API.post(this.url, data, config);
+                return this.getData(response);
+            }
         } catch (e) {
             console.error(e);
         }
     }
 
-    async get(data) {
+    async get(data, config={}) {
         const id = this.getId(data, undefined, false);
         const request = (id || id === 0) ? `${this.url}/${id}` : this.url
         try {
-            const response = await API.get(request);
+            const response = await API.get(request, config);
             return this.getData(response);
         } catch (e) {
             console.error(e);
         }
     }
 
-    async patch(data, dataId) {
+    async patch(data, dataId, config={}) {
         const id = this.getId(data, dataId)
         try {
-            const response = await API.patch(`${this.url}/${id}`, {
-                data
-            });
+            const response = await API.patch(`${this.url}/${id}`, data, config);
             return this.getData(response);
         } catch (e) {
             console.error(e);
         }
     }
 
-    async delete(data) {
+    async delete(data, config={}) {
         const id = this.getId(data);
         try {
-            const response = await API.delete(`${this.url}/${id}`);
+            const response = await API.delete(`${this.url}/${id}`, config);
             return this.getData(response);
         } catch (e) {
             console.error(e);
