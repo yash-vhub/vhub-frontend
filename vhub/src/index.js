@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import Routing from "./views/routes/route";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import vendorApp from './reducers/reducers';
 import { Provider } from "react-redux";
 import 'semantic-ui-css/semantic.min.css';
+import thunk from 'redux-thunk';
 
-const store = createStore(vendorApp);
+const store = createStore(vendorApp,applyMiddleware(thunk));
 
 const APP = (
     <Provider store={store}>
