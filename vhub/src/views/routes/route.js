@@ -5,6 +5,7 @@ import LoginPage from "../login/login-connector";
 import Header from '../common/header';
 import RequestList from "../request-list/request-list-connector";
 import Request from '../request/request-connector';
+import ConfirmPage from '../confirm/confirm-connector';
 
 function Routing(){
     return (
@@ -15,6 +16,7 @@ function Routing(){
             <Route path="/" exact component={LoginPage}/>
             <Route path="/request-list" component={RequestList}/>
             <Route path='/request' component={Request}/>
+            <Route path='/confirm/:id' component={ConfirmPage}/>
         </Router>
         </div>
     )

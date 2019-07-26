@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { Table } from 'semantic-ui-react';
 
 function RequestList(props) {
@@ -10,7 +11,7 @@ function RequestList(props) {
         return (
             <Table.Row key={requestList.id}>
                 <Table.Cell>
-                    {requestList.requestID}
+                    <Link to={`/confirm/${requestList.requestID}`}>{requestList.requestID}</Link>
                 </Table.Cell>
                 <Table.Cell>
                     {requestList.jobPostingID}
