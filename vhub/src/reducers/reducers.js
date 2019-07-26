@@ -9,6 +9,6 @@ export default combineReducers({
     app,
     login,
     requestLists,
-    resources
+    resources,
     request,
 })
