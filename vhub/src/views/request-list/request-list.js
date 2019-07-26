@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { Table } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 
 function RequestList(props) {
     useEffect (() => {
@@ -10,7 +12,7 @@ function RequestList(props) {
         return (
             <Table.Row key={requestList.id}>
                 <Table.Cell>
-                    {requestList.requestID}
+                    <Link to={`/request/${requestList.id}`}>{requestList.requestID}</Link>
                 </Table.Cell>
                 <Table.Cell>
                     {requestList.jobPostingID}
@@ -31,7 +33,7 @@ function RequestList(props) {
                     {requestList.manager}
                 </Table.Cell>
                 <Table.Cell>
-                    {requestList.status}
+                    <Link to={`/confirm/${requestList.requestID}`}>{requestList.status}</Link>
                 </Table.Cell>
             </Table.Row>
         )
