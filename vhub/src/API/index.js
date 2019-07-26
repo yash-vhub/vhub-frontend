@@ -39,7 +39,7 @@ export class Repository {
         try {
             if(Array.isArray(data)) {
                 const requests = data.map(async (d) => await API.post(this.url, d, config));
-                const responses = await Promise.all(responses);
+                const responses = await Promise.all(requests);
                 return responses.map(this.getData);
             } else {
                 const response = await API.post(this.url, data, config);
