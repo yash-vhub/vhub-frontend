@@ -3,8 +3,8 @@ import ResourceForm from './resourceForm';
 import {addNewSkill} from '../../action-creators/request';
 
 function mapStateToProps(state, ownProps){
-    console.log(state)
-    let {compensation, experience, index, number, skills} = state.request.requestedResources[ownProps.id]
+    let {compensation, experience, index, number} = state.request.requestedResources[ownProps.id]
+    let skills = state.request.requestedResources[ownProps.id].skills
     return{
         compensation,
         experience,
@@ -17,9 +17,8 @@ function mapStateToProps(state, ownProps){
 
 function mapDispatchToProps(dispatch) {
     return {
-        addNewSkill: (newSkill) => {
-            console.log(newSkill)
-            dispatch(addNewSkill(newSkill))
+        addNewSkill: (newSkill, index) => {
+            dispatch(addNewSkill(newSkill, index))
         }
     }
 }

@@ -5,11 +5,10 @@ export function addNewResourceRequest() {
         type:ADD_NEW_RESOURCE_REQUEST,
     }
 }
-export function addNewSkill(newSkill, key){
-    console.log(newSkill)
+export function addNewSkill(newSkill, index){
     return {
         type:ADD_NEW_SKILL,
         newSkill,
-        key
+        index
     }
 }

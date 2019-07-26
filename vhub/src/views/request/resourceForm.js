@@ -5,18 +5,23 @@ import {Form, Grid, Input, Label} from 'semantic-ui-react';
     constructor(props){
         super(props)
         this.state={
-            newSkill:''
+            newSkill:'',
         }
+    }
+    componentDidUpdate(nextProps, nextState){
+        console.log(nextProps)
     }
     handleInput = (e) => {
         this.setState({newSkill: e.target.value})
     }
     addSkillToResource = () => {
-        this.props.addNewSkill(this.state.newSkill, this.props.key)
+        this.props.addNewSkill(this.state.newSkill, this.props.index)
     }
     render(){
+        console.log('here state', this.state)
+        console.log('here props', this.props)
         const skills = this.props.skills.map((skill)=>{
-            return <Label tag>{skill}</Label>
+            return <Label key={skill} color='blue' tag>{skill}</Label>
         })
         return(
             <>
@@ -27,15 +32,17 @@ import {Form, Grid, Input, Label} from 'semantic-ui-react';
                     <Form.Input fluid label='$/hr' placeholder='$'/>
                     <Form.Input fluid label='Experience In Years Required' placeholder='years'/>
                 </Form.Group>
-                <Input
-                icon='tags'
-                iconPosition='left'
-                label={{tag: true, content: 'Add Skill', onClick:this.addSkillToResource}}
-                labelPosition='right'
-                placeholder='Add Skills'
-                onChange={this.handleInput}
-                />
-                {skills}
+                    <Input
+                    icon='tags'
+                    iconPosition='left'
+                    label={{tag: true, content: 'Add Skill', onClick:this.addSkillToResource}}
+                    labelPosition='right'
+                    placeholder='Add Skills'
+                    onChange={this.handleInput}
+                    />
+                <Form.Group>
+                    {skills}
+                </Form.Group>
             </>
         )
     }

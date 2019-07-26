@@ -16,7 +16,6 @@ function blankState(){
 }
 
 function addNewResource(state) {
-    console.log('reducer', state)
     const resourceRequestDefaultObject = {
         index: state.requestedResources.length,
         number: 0,
@@ -31,21 +30,18 @@ function addNewResource(state) {
 }
 
 function addNewSkill(state, action) {
-    console.log(action)
-    state.requestedResources.map((requestedResource) => {
-        if(requestedResource.key === action.key){
-            requestedResource.skills.push(action.newSkill)
-            return{
-                ...state
-            }
+    console.log(state)
+    return{
+        ...state,
+            requestedResources:[
+                ...state.requestedResources.slice(0,action.index),
+                {
+                    ...state.requestedResources[action.index],
+                    skills:[...state.requestedResources[action.index].skills, action.newSkill]
+                },
+                ...state.requestedResources.slice(action.index+1)
+            ]
         }
-        return{
-            ...state
-        }
-    })
-    return {
-        ...state
-    }
 }
 
 export default function (state = blankState(), action) {
