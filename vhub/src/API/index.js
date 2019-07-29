@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const DEFAULT_CONFIG = {
-    baseURL: "http://10.27.12.52:8080/api/"
+    baseURL: "http://10.27.12.112:8080/api/"
 }
 const API = axios.create(DEFAULT_CONFIG);
 
@@ -39,7 +39,7 @@ export class Repository {
         try {
             if(Array.isArray(data)) {
                 const requests = data.map(async (d) => await API.post(this.url, d, config));
-                const responses = await Promise.all(responses);
+                const responses = await Promise.all(requests);
                 return responses.map(this.getData);
             } else {
                 const response = await API.post(this.url, data, config);
