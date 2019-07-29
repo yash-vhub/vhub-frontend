@@ -21,11 +21,20 @@ export function invalidateResources() {
     }
 }
 
-export function fetchResources(name) {
+export function fetchResources({name, skill}) {
     return async function(dispatch) {
         try {
             dispatch(requestResources())
-            const response = name ? await Resources.getByName(name) : await Resources.get();
+            let response;
+            if (name && skill) {
+                response = await Resources.getByNameAndSkill(name, skill);
+            } else if (name) {
+                response = await Resources.getByName(name);
+            } else if (skill) {
+                response = await Resources.getBySkill(skill);
+            } else {
+                response = await Resources.get();
+            }
             dispatch(receiveResources(response));
         } catch (e) {
             dispatch(invalidateResources())
