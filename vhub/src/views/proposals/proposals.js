@@ -21,9 +21,6 @@ const COMMENTS = [
 ]
 
 function Proposals({fetchResources, resources, isFetching, vendor}) {
-    useEffect(() => {
-        fetchResources()
-    }, [fetchResources])
 
     const [searchParams, setSearchParams] = useState({
         name: '',
@@ -51,7 +48,7 @@ function Proposals({fetchResources, resources, isFetching, vendor}) {
     }
 
     const onSearchClick = (e) => {
-        fetchResources(searchParams.name);
+        fetchResources(searchParams);
 
     }
 
