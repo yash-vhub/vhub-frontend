@@ -4,6 +4,7 @@ import app from "./app";
 import resources from './resources';
 import requestLists from './request-list';
 import request from './request';
+import requestEnvelope from './request-envelope'
 
 export default combineReducers({
     app,
@@ -11,4 +12,5 @@ export default combineReducers({
     requestLists,
     resources,
     request,
+    requestEnvelope,
 })
